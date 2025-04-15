@@ -71,3 +71,15 @@ body {
 .button:disabled {
   background: gray;
 }
+
+#version-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: left;
+  background: rgba(0, 0, 0, 0.8);
+  color: darkred;
+  padding: 10px 0;
+  font-size: 14px;
+  z-index: 1000;
+}

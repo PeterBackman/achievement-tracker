@@ -1,5 +1,13 @@
+const VERSION = "0.2.0";
 const LOCAL_STORAGE_KEY = "achievements";
 const CLAIMED_STORAGE_KEY = "claimed";
+
+function displayVersion() {
+  const versionElement = document.getElementById("version-number");
+  if (versionElement) {
+    versionElement.textContent = VERSION;
+  }
+}
 
 function loadAchievements() {
   const achievementsData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
@@ -101,4 +109,5 @@ document.addEventListener("DOMContentLoaded", () => {
     saveAchievements([]);
   }
   renderAchievements();
+  displayVersion();
 });
