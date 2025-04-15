@@ -37,7 +37,7 @@ function renderAchievements() {
     const div = document.createElement("div");
     div.className = "achievement";
     div.innerHTML = `
-      <img src="../images/${achievement.level}.png" class="${dependencyMet ? 'active' : ''}" alt="${achievement.level}" title="${achievement.description}">
+      <img src="images/${achievement.level}.png" class="${dependencyMet ? 'active' : ''}" alt="${achievement.level}" title="${achievement.description}">
       <h3>${achievement.title}</h3>
       ${isClaimed ? '<span class="corner-stat">★</span>' : `<button class="button" ${!dependencyMet ? "disabled" : ""}>Claim</button>`}
     `;
