@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Achievement Tracker</title>
+  <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <button id="reload" class="corner-button">Reload</button>
+      <button id="restart" class="corner-button">Restart</button>
+      <span id="percentage" class="corner-stat">0% Claimed</span>
+    </div>
+    <input type="file" id="achievement-file" style="display:none;" accept=".json">
+    <div id="achievements-grid" class="grid"></div>
+  </div>
+  <script src="scripts/script.js"></script>
+</body>
+</html>
