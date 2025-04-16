@@ -78,6 +78,27 @@ function renderAchievements() {
       ${isClaimed ? '<span class="corner-stat">★</span>' : `<button class="button" ${!dependencyMet ? "disabled" : ""}>Erövra</button>`}
     `;
 
+    const img = div.querySelector("img");
+    if (img) {
+      img.addEventListener("click", (event) => {
+        // Create a tooltip element
+        const tooltip = document.createElement("div");
+        tooltip.className = "tooltip";
+        tooltip.textContent = img.title; 
+        document.body.appendChild(tooltip);
+
+          // Position the tooltip at the click location
+          tooltip.style.left = `${event.pageX + 0}px`; // Offset by 10px to avoid overlapping the cursor
+          tooltip.style.top = `${event.pageY + 20}px`;
+  
+
+        // Remove the tooltip after 3 seconds
+        setTimeout(() => {
+          tooltip.remove();
+        }, 3000);
+      });
+    }
+
     const button = div.querySelector(".button");
     if (button) {
       button.addEventListener("click", () => claimAchievement(achievement));

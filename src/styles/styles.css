@@ -51,6 +51,7 @@ body {
 .achievement img {
   max-width: 100px;
   opacity: 0.6;
+  transition: opacity 0.3s ease; /* Smooth transition for hover effect */
 }
 
 .achievement img.active {
@@ -122,3 +123,15 @@ body {
   font-style: normal; 
 }
 
+.tooltip {
+  position: absolute;
+  background: white;
+  color: black;
+  padding: 5px 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  pointer-events: none;
+  z-index: 1000;
+  white-space: nowrap;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
