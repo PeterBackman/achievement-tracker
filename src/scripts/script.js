@@ -2,6 +2,34 @@ const VERSION = "0.2.0";
 const LOCAL_STORAGE_KEY = "achievements";
 const CLAIMED_STORAGE_KEY = "claimed";
 
+function showCustomDialog(message, onConfirm) {
+  const dialog = document.getElementById("custom-dialog");
+  const dialogMessage = document.getElementById("dialog-message");
+  const confirmButton = document.getElementById("dialog-confirm");
+  const cancelButton = document.getElementById("dialog-cancel");
+
+  dialogMessage.innerHTML = message; // Use innerHTML to allow italic text
+  dialog.classList.remove("hidden");
+
+  const closeDialog = () => {
+    dialog.classList.add("hidden");
+    confirmButton.removeEventListener("click", handleConfirm);
+    cancelButton.removeEventListener("click", handleCancel);
+  };
+
+  const handleConfirm = () => {
+    closeDialog();
+    onConfirm();
+  };
+
+  const handleCancel = () => {
+    closeDialog();
+  };
+
+  confirmButton.addEventListener("click", handleConfirm);
+  cancelButton.addEventListener("click", handleCancel);
+}
+
 function displayVersion() {
   const versionElement = document.getElementById("version-number");
   if (versionElement) {
@@ -61,12 +89,15 @@ function renderAchievements() {
 }
 
 function claimAchievement(achievement) {
-  if (confirm(`Do you want to claim ${achievement.title}?`)) {
-    const claimed = loadClaimedAchievements();
-    claimed.push({ id: achievement.id, date: new Date().toISOString().split("T")[0] });
-    saveClaimedAchievements(claimed);
-    renderAchievements();
+  showCustomDialog(
+    `Have you fulfilled the requirements for <i>${achievement.title}</i>?<br><br>${achievement.description}`,
+    () => {
+      const claimed = loadClaimedAchievements();
+      claimed.push({ id: achievement.id, date: new Date().toISOString().split("T")[0] });
+      saveClaimedAchievements(claimed);
+      renderAchievements();
   }
+);
 }
 
 function updateClaimedPercentage() {
