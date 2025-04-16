@@ -66,7 +66,7 @@ function renderAchievements() {
     const dependencyMet = !achievement.dependency || claimed.some(a => a.id === achievement.dependency);
 
     // Skip rendering if the dependency is not met and the achievement is not claimed
-    if (!dependencyMet && !isClaimed) {
+    if (!dependencyMet || isClaimed) {
       return;
     }
 
@@ -75,7 +75,7 @@ function renderAchievements() {
     div.innerHTML = `
       <img src="images/${achievement.level}.png" class="${dependencyMet ? 'active' : ''}" alt="${achievement.level}" title="${achievement.description}">
       <h3>${achievement.title}</h3>
-      ${isClaimed ? '<span class="corner-stat">★</span>' : `<button class="button" ${!dependencyMet ? "disabled" : ""}>Claim</button>`}
+      ${isClaimed ? '<span class="corner-stat">★</span>' : `<button class="button" ${!dependencyMet ? "disabled" : ""}>Erövra</button>`}
     `;
 
     const button = div.querySelector(".button");
@@ -90,7 +90,7 @@ function renderAchievements() {
 
 function claimAchievement(achievement) {
   showCustomDialog(
-    `Have you fulfilled the requirements for <i>${achievement.title}</i>?<br><br>${achievement.description}`,
+    `Har du uppfyllt kraven för  <i>${achievement.title}</i>?<br><br>${achievement.description}`,
     () => {
       const claimed = loadClaimedAchievements();
       claimed.push({ id: achievement.id, date: new Date().toISOString().split("T")[0] });
@@ -104,7 +104,7 @@ function updateClaimedPercentage() {
   const achievements = loadAchievements();
   const claimed = loadClaimedAchievements();
   const percentage = achievements.length > 0 ? Math.floor((claimed.length / achievements.length) * 100) : 0;
-  document.getElementById("percentage").innerText = `${percentage}% Claimed`;
+  document.getElementById("percentage").innerText = `${percentage}% avklarat`;
 }
 
 function restartAchievements() {
