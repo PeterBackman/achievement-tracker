@@ -135,3 +135,11 @@ body {
   white-space: nowrap;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
+
+.achievement h3 {
+  hyphens: auto; /* Enables automatic hyphenation */
+  overflow-wrap: break-word; /* Ensures long words break to the next line */
+  word-wrap: break-word; /* For older browsers */
+  word-break: break-word; /* Ensures compatibility */
+  white-space: normal; /* Allows text to wrap to the next line */
+}
