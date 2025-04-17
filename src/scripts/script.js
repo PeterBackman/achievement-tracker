@@ -37,9 +37,22 @@ function displayVersion() {
   }
 }
 
+function displayContentVersion() {
+  const {version} = loadAchievements();
+  const versionElement = document.getElementById("content-version");
+  if (versionElement) {
+    versionElement.textContent = version;
+  }
+}
+
 function loadAchievements() {
-  const achievementsData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-  return achievementsData || [];
+  const data = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+  if (!data) return { version: null, achievements: [] };
+
+  return {
+    version: data.version || null, // Extract the version
+    achievements: data.achievements || [] // Extract the achievements
+  };
 }
 
 function saveAchievements(data) {
@@ -57,7 +70,7 @@ function saveClaimedAchievements(data) {
 
 function renderAchievements() {
   const container = document.getElementById("achievements-grid");
-  const achievements = loadAchievements();
+  const {achievements} = loadAchievements();
   const claimed = loadClaimedAchievements();
 
   container.innerHTML = "";
@@ -67,7 +80,7 @@ function renderAchievements() {
     const dependencyMet = !achievement.dependency || achievement.dependency.every(depId =>
       claimed.some(a => a.id === depId)
     );
-    
+
     // Skip rendering if the dependency is not met and the achievement is not claimed
     if (!dependencyMet || isClaimed) {
       return;
@@ -148,8 +161,13 @@ function loadNewAchievements() {
       const reader = new FileReader();
       reader.onload = () => {
         const achievements = JSON.parse(reader.result);
-        saveAchievements(achievements);
-        renderAchievements();
+        if (achievements.version && Array.isArray(achievements.achievements)) {
+            saveAchievements(achievements);
+            renderAchievements();
+            displayContentVersion();
+        } else {
+            alert("Invalid achievement file format.");
+        }
       };
       reader.readAsText(file);
     }
@@ -165,4 +183,5 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   renderAchievements();
   displayVersion();
+  displayContentVersion()
 });
