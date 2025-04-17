@@ -63,8 +63,11 @@ function renderAchievements() {
   container.innerHTML = "";
   achievements.forEach(achievement => {
     const isClaimed = claimed.some(a => a.id === achievement.id);
-    const dependencyMet = !achievement.dependency || claimed.some(a => a.id === achievement.dependency);
-
+    // Check if all dependencies are met
+    const dependencyMet = !achievement.dependency || achievement.dependency.every(depId =>
+      claimed.some(a => a.id === depId)
+    );
+    
     // Skip rendering if the dependency is not met and the achievement is not claimed
     if (!dependencyMet || isClaimed) {
       return;
