@@ -51,12 +51,8 @@ body {
 
 .achievement img.achievement-image {
   max-width: 100px;
-  opacity: 0.6;
-  transition: opacity 0.3s ease; /* Smooth transition for hover effect */
-}
-
-.achievement img.achievement-imag.active {
-  opacity: 1;
+  border: 2px solid #FFD700; /* Add a gold border for consistency */
+  border-radius: 5px; /* Add rounded corners */
 }
 
 .button {
@@ -154,7 +150,6 @@ body {
   background: #222; /* Match the dark grey background */
   border: 2px solid #FFD700; /* Add a gold border for consistency */
   border-radius: 5px; /* Add rounded corners */
-  padding: 1px; /* Add padding to create space between the image and the border */
   box-sizing: border-box; /* Ensure the border is included in the element's dimensions */
 }
 
