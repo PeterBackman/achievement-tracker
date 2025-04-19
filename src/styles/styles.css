@@ -6,7 +6,7 @@ body {
 }
 
 .container {
-  padding: 20px;
+  padding: 5px 10px;
   border: 5px solid darkred;
   margin: 20px;
   background: rgba(0, 0, 0, 0.8);
@@ -17,7 +17,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 }
 
 .corner-button {
@@ -143,13 +143,13 @@ body {
   word-wrap: break-word; /* For older browsers */
   word-break: break-word; /* Ensures compatibility */
   white-space: normal; /* Allows text to wrap to the next line */
-  height: 3.6em; /* Reserve space for two lines of text (line-height * 2) */
-
-}
+  line-height: 1.2; /* Reduce line height for compact text */
+  height: 3.2em; /* Adjust height to fit two lines */
+  }
 
 .group-wrapper {
   display: inline-block;
-  margin: 10px auto;
+  margin: 3px auto;
   max-width: 50px;
   background: #222; /* Match the dark grey background */
   border: 2px solid #FFD700; /* Add a gold border for consistency */
