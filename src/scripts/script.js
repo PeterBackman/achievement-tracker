@@ -89,12 +89,30 @@ function renderAchievements() {
     const div = document.createElement("div");
     div.className = "achievement";
     div.innerHTML = `
-      <img src="images/${achievement.level}.png" class="${dependencyMet ? 'active' : ''}" alt="${achievement.level}" title="${achievement.description}">
+      <img src="images/${achievement.level}.png" class="achievement-image ${dependencyMet ? 'active' : ''}" alt="${achievement.level}" title="${achievement.description}">
       <h3>${achievement.title}</h3>
       ${isClaimed ? '<span class="corner-stat">★</span>' : `<button class="button" ${!dependencyMet ? "disabled" : ""}>Erövra</button>`}
     `;
 
-    const img = div.querySelector("img");
+    // Add a divider outside the group wrapper
+    const divider = document.createElement("hr");
+    div.appendChild(divider);
+
+    // Add the group image
+    if (achievement.group) {
+      const groupWrapper = document.createElement("div");
+      groupWrapper.className = "group-wrapper";
+        
+      const groupImg = document.createElement("img");
+      groupImg.src = `images/${achievement.group}.png`; // Path to the group image
+      groupImg.alt = achievement.group; // Alt text for accessibility
+      groupImg.className = "group-image"; // Add a class for styling
+        
+      groupWrapper.appendChild(groupImg);
+      div.appendChild(groupWrapper);
+    }
+
+    const img = div.querySelector("img.achievement-image");
     if (img) {
       img.addEventListener("click", (event) => {
         // Create a tooltip element
@@ -103,10 +121,9 @@ function renderAchievements() {
         tooltip.textContent = img.title; 
         document.body.appendChild(tooltip);
 
-          // Position the tooltip at the click location
-          tooltip.style.left = `${event.pageX + 0}px`; // Offset by 10px to avoid overlapping the cursor
-          tooltip.style.top = `${event.pageY + 20}px`;
-  
+        // Position the tooltip at the click location
+        tooltip.style.left = `${event.pageX + 0}px`; // Offset by 10px to avoid overlapping the cursor
+        tooltip.style.top = `${event.pageY + 20}px`;
 
         // Remove the tooltip after 3 seconds
         setTimeout(() => {
