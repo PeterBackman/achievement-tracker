@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,9 @@
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 <body>
+  <noscript>
+    <p style="color: red; text-align: center;">This application requires JavaScript to function properly. Please enable JavaScript in your browser.</p>
+  </noscript>
   <div id="custom-dialog" class="modal hidden">
     <div class="modal-content">
       <p id="dialog-message"></p>
@@ -17,8 +20,8 @@
   </div>
   <div class="container">
     <div class="header">
-      <button id="reload" class="corner-button">Ladda in nytt innehåll</button>
-      <button id="restart" class="corner-button">Börja om</button>
+      <button id="reload" class="corner-button button">Ladda in nytt innehåll</button>
+      <button id="restart" class="corner-button button">Börja om</button>
       <span id="percentage" class="corner-stat">0% Claimed</span>
     </div>
     <input type="file" id="achievement-file" style="display:none;" accept=".json">
@@ -26,8 +29,8 @@
   </div>
   <script src="src/scripts/script.js"></script>
   <footer id="version-footer">
-    Appversion: <span id="version-number"></span>
-    Innehållsversion: <span id="content-version"></span>
+    <p>Appversion: <span id="version-number"></span>
+    Innehållsversion: <span id="content-version"></span></p>
   </footer>
 </body>
 </html>
