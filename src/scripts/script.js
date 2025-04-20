@@ -106,6 +106,7 @@ function renderAchievements() {
       const groupImg = document.createElement("img");
       groupImg.src = `images/${achievement.group}.png`; // Path to the group image
       groupImg.alt = achievement.group; // Alt text for accessibility
+      groupImg.title = achievement.group; // Title text for accessibility
       groupImg.className = "group-image"; // Add a class for styling
         
       groupWrapper.appendChild(groupImg);
