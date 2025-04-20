@@ -22,7 +22,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 .corner-button {
@@ -136,7 +136,9 @@ body {
   font-size: 12px;
   pointer-events: none;
   z-index: 1000;
-  white-space: nowrap;
+  white-space: normal; /* Allow text to wrap */
+  max-width: 150px; /* Set a maximum width for the tooltip */
+  word-wrap: break-word; /* Ensure long words break to the next line */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
@@ -147,7 +149,7 @@ body {
   word-break: break-word; /* Ensures compatibility */
   white-space: normal; /* Allows text to wrap to the next line */
   line-height: 1.2; /* Reduce line height for compact text */
-  height: 3.2em; /* Adjust height to fit two lines */
+  height: 1.8em; /* Adjust height to fit two lines */
   }
 
 .group-wrapper {

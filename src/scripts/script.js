@@ -91,7 +91,7 @@ function renderAchievements() {
     div.innerHTML = `
       <img src="images/${achievement.level}.png" class="achievement-image" alt="${achievement.level}" title="${achievement.description}">
       <h3>${achievement.title}</h3>
-      ${isClaimed ? '<span class="corner-stat">★</span>' : `<button class="button" ${!dependencyMet ? "disabled" : ""}>Erövra</button>`}
+      ${isClaimed ? '<span class="corner-stat">★</span>' : `<button class="button" ${!dependencyMet ? "disabled" : ""}>Erövra trofé</button>`}
     `;
 
     // Add a divider outside the group wrapper
@@ -162,7 +162,7 @@ function renderAchievements() {
 
 function claimAchievement(achievement) {
   showCustomDialog(
-    `Har du uppfyllt kraven för  <i>${achievement.title}</i>?<br><br>${achievement.description}`,
+    `Har du uppfyllt kraven för trofén <i>${achievement.title}</i>?<br><br>${achievement.description}`,
     () => {
       const claimed = loadClaimedAchievements();
       claimed.push({ id: achievement.id, date: new Date().toISOString().split("T")[0] });
