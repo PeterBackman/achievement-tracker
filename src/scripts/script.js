@@ -173,8 +173,9 @@ function claimAchievement(achievement) {
 }
 
 function updateClaimedPercentage() {
-  const achievements = loadAchievements();
+  const achievements = loadAchievements().achievements;
   const claimed = loadClaimedAchievements();
+
   const percentage = achievements.length > 0 ? Math.floor((claimed.length / achievements.length) * 100) : 0;
   document.getElementById("percentage").innerText = `${percentage}% avklarat`;
 }
