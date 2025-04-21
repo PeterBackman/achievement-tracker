@@ -1,4 +1,4 @@
-const VERSION = "1.0.0";
+const VERSION = "1.1.0";
 const LOCAL_STORAGE_KEY = "achievements";
 const CLAIMED_STORAGE_KEY = "claimed";
 
@@ -176,8 +176,31 @@ function updateClaimedPercentage() {
   const achievements = loadAchievements().achievements;
   const claimed = loadClaimedAchievements();
 
-  const percentage = achievements.length > 0 ? Math.floor((claimed.length / achievements.length) * 100) : 0;
-  document.getElementById("percentage").innerText = `${percentage}% avklarat`;
+  const claimedWithLevels = claimed.map(claimedAchievement => {
+    const fullAchievement = achievements.find(a => a.id === claimedAchievement.id);
+    return { ...claimedAchievement, level: fullAchievement?.level || "bronze" };
+  });
+
+  // Calculate the percentage of achievements claimed
+  const percentage = achievements.length > 0 
+    ? Math.floor((claimed.length / achievements.length) * 100) 
+    : 0;
+
+  // Calculate the total credits
+  const creditValues = {
+    bronze: 10,
+    silver: 25,
+    gold: 75,
+    platinum: 200,
+    diamond: 500,
+  };
+  const totalCredits = claimedWithLevels.reduce((total, achievement) => {
+    const level = achievement.level.toLowerCase();
+    return total + (creditValues[level] || 0);
+  }, 0);
+
+  // Update the UI
+  document.getElementById("percentage").innerText = `${percentage}% klart (${totalCredits} kr)`;
 }
 
 function restartAchievements() {
