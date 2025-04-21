@@ -86,12 +86,12 @@ body {
   bottom: 0;
   width: 100%;
   text-align: left;
-  background: rgba(0, 0, 0, 0.8);
-  color: darkred;
+  color: gold;
   padding: 0px 10px;
   font-size: 14px;
-  line-height: 1.2; /* Compact the line height */
-  margin-top: 5px;
+  line-height: 0.6; /* Compact the line height */
+  margin-top: 0px;
+  margin-left: 10px;
   z-index: 1000;
 }
 

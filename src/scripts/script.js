@@ -1,4 +1,4 @@
-const VERSION = "0.2.0";
+const VERSION = "1.0.0";
 const LOCAL_STORAGE_KEY = "achievements";
 const CLAIMED_STORAGE_KEY = "claimed";
 
