@@ -1,4 +1,4 @@
-const VERSION = "1.1.0";
+const VERSION = "1.1.1";
 const LOCAL_STORAGE_KEY = "achievements";
 const CLAIMED_STORAGE_KEY = "claimed";
 
@@ -91,7 +91,7 @@ function renderAchievements() {
     div.innerHTML = `
       <img src="images/${achievement.level}.png" class="achievement-image" alt="${achievement.level}" title="${achievement.description}">
       <h3>${achievement.title}</h3>
-      ${isClaimed ? '<span class="corner-stat">★</span>' : `<button class="button" ${!dependencyMet ? "disabled" : ""}>Erövra trofé</button>`}
+      <button class="button">Erövra trofé</button>
     `;
 
     // Add a divider outside the group wrapper
@@ -104,7 +104,7 @@ function renderAchievements() {
       groupWrapper.className = "group-wrapper";
         
       const groupImg = document.createElement("img");
-      groupImg.src = `images/${achievement.group}.png`; // Path to the group image
+      groupImg.src = `images/${achievement.group}.png`;
       groupImg.alt = achievement.group; // Alt text for accessibility
       groupImg.title = achievement.group; // Title text for accessibility
       groupImg.className = "group-image"; // Add a class for styling
@@ -194,8 +194,9 @@ function updateClaimedPercentage() {
     platinum: 200,
     diamond: 500,
   };
-  const totalCredits = claimedWithLevels.reduce((total, achievement) => {
-    const level = achievement.level.toLowerCase();
+  const totalCredits = claimed.reduce((total, claimedAchievement) => {
+    const fullAchievement = achievements.find(a => a.id === claimedAchievement.id);
+    const level = fullAchievement?.level.toLowerCase() || "bronze";
     return total + (creditValues[level] || 0);
   }, 0);
 
@@ -204,10 +205,13 @@ function updateClaimedPercentage() {
 }
 
 function restartAchievements() {
-  if (confirm("Do you really want to restart?")) {
-    localStorage.removeItem(CLAIMED_STORAGE_KEY);
-    renderAchievements();
-  }
+  showCustomDialog(
+    "Vill du verkligen återställa alla erövrade trofeer?",
+    () => {
+      localStorage.removeItem(CLAIMED_STORAGE_KEY);
+      renderAchievements();
+    }
+  );
 }
 
 function loadNewAchievements() {
