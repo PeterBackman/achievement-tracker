@@ -25,18 +25,9 @@ body {
   margin-bottom: 30px;
 }
 
-.corner-button {
-  background: #0056b3;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  box-shadow: 2px 2px 5px #000;
-}
-
 .corner-stat {
   color: gold;
-  font-size: 1.2rem;
+  font-size: 1.0rem;
 }
 
 .grid {
@@ -88,11 +79,10 @@ body {
   text-align: left;
   color: gold;
   padding: 0px 10px;
-  font-size: 14px;
+  font-size: 0.8rem;
   line-height: 0.6; /* Compact the line height */
   margin-top: 0px;
   margin-left: 10px;
-  z-index: 1000;
 }
 
 .modal {
@@ -133,7 +123,7 @@ body {
   color: black;
   padding: 5px 5px;
   border-radius: 5px;
-  font-size: 12px;
+  font-size: 0.7rem;
   pointer-events: none;
   z-index: 1000;
   white-space: normal; /* Allow text to wrap */
