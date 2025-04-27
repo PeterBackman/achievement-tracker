@@ -22,12 +22,14 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
+  flex: 1;
 }
 
 .corner-stat {
   color: gold;
-  font-size: 1.0rem;
+  font-size: 0.9rem;
+  margin-left: auto; /* Push the claim percentage to the far right */
 }
 
 .grid {
@@ -51,7 +53,7 @@ body {
   border-radius: 5px; /* Add rounded corners */
 }
 
-.button {
+.button, #dialog-confirm, #dialog-cancel {
   background: darkred;
   color: white;
   border: none;
@@ -61,15 +63,13 @@ body {
   border-radius: 5px;
   margin-top: 10px;
   box-shadow: 2px 2px 5px #000;
+  min-width: 30px; /* Set a minimum width for buttons */
+  text-align: center; /* Ensure text is centered */
 }
 
-.button:hover {
+.button:hover, #dialog-confirm:hover, #dialog-cancel:hover {
   background: lightcoral; /* Change the background color on hover */
   color: black; /* Change the text color on hover */
-}
-
-.button:disabled {
-  background: gray;
 }
 
 #version-footer {
@@ -98,7 +98,7 @@ body {
   z-index: 1000;
 }
 
-.modal.hidden {
+.hidden {
   display: none;
 }
 
@@ -163,4 +163,32 @@ hr {
   border: none; /* Remove the visible line */
   margin: 0px 0; /* Add spacing to act as a divider */
   height: 0; /* Ensure it doesn't take up extra space */
+}
+
+/* Header Styles */
+#main-header {
+  color: white;
+  padding: 0px 10px;
+  display: flex;
+  justify-content: space-between; /* Space out the buttons and percentage */
+  align-items: center;
+}
+
+#custom-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #222;
+  color: white;
+  padding: 20px;
+  border: 2px solid #222;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  border: 3px solid gold; /* Add a gold border */
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.dialog-content {
+  text-align: center;
 }

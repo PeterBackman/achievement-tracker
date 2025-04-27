@@ -1,4 +1,4 @@
-const VERSION = "1.1.1";
+const VERSION = "1.1.2";
 const LOCAL_STORAGE_KEY = "achievements";
 const CLAIMED_STORAGE_KEY = "claimed";
 
@@ -7,6 +7,11 @@ function showCustomDialog(message, onConfirm) {
   const dialogMessage = document.getElementById("dialog-message");
   const confirmButton = document.getElementById("dialog-confirm");
   const cancelButton = document.getElementById("dialog-cancel");
+
+  if (!dialog || !dialogMessage || !confirmButton || !cancelButton) {
+    console.error("Dialog elements are missing in the DOM.");
+    return;
+  }
 
   dialogMessage.innerHTML = message; // Use innerHTML to allow italic text
   dialog.classList.remove("hidden");
@@ -205,6 +210,7 @@ function updateClaimedPercentage() {
 }
 
 function restartAchievements() {
+  console.log("Pressed button")
   showCustomDialog(
     "Vill du verkligen återställa alla erövrade trofeer?",
     () => {

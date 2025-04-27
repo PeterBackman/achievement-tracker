@@ -11,26 +11,36 @@
   <noscript>
     <p style="color: red; text-align: center;">This application requires JavaScript to function properly. Please enable JavaScript in your browser.</p>
   </noscript>
-  <div id="custom-dialog" class="modal hidden">
-    <div class="modal-content">
+
+  <!-- Header Section -->
+  <header id="main-header">
+    <div class="header">
+      <button id="reload" class="button">Ladda in nytt innehåll</button>
+      <button id="restart" class="button">Börja om</button>
+      <span id="percentage" class="corner-stat">0% Claimed</span>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <input type="file" id="achievement-file" style="display:none;" accept=".json">
+    <div id="achievements-grid" class="grid"></div>
+  </div>
+
+  <div id="custom-dialog" class="hidden">
+    <div class="dialog-content">
       <p id="dialog-message"></p>
       <button id="dialog-confirm" class="button">Ja</button>
       <button id="dialog-cancel" class="button">Nej</button>
     </div>
   </div>
-  <div class="container">
-    <div class="header">
-      <button id="reload" class="corner-button button">Ladda in nytt innehåll</button>
-      <button id="restart" class="corner-button button">Börja om</button>
-      <span id="percentage" class="corner-stat">0% Claimed</span>
-    </div>
-    <input type="file" id="achievement-file" style="display:none;" accept=".json">
-    <div id="achievements-grid" class="grid"></div>
-  </div>
-  <script src="src/scripts/script.js"></script>
+
+  <!-- Footer Section -->
   <footer id="version-footer">
     <p>Appversion: <span id="version-number"></span>
     &nbsp;&nbsp;&nbsp;&nbsp;Innehållsversion: <span id="content-version"></span></p>
   </footer>
+
+  <script src="src/scripts/script.js"></script>
 </body>
 </html>
